@@ -67,7 +67,7 @@ class AyTermMeta {
     <?php foreach(self::$meta_fields[$tag] as $input) : ?>
       <div class="form-field term-<?php echo $input->name; ?>-wrap">
         <label for="<?php echo $input->name; ?>"><?php echo $input->label; ?></label>
-        <input name="<?php echo $input->name; ?>" id="<?php echo $input->name; ?>" type="text" value="" size="40" />
+        <?php self::display_field($input); ?>
         <p><?php echo $input->description; ?></p>
       </div>
     <?php endforeach; ?>
@@ -80,11 +80,50 @@ class AyTermMeta {
       <tr class="form-field term-<?php echo $input->name; ?>-wrap">
         <th scope="row"><label for="<?php echo $input->name; ?>"><?php echo $input->label; ?></label></th>
         <td>
-          <input type="text" id="<?php echo $input->name; ?>" name="<?php echo $input->name; ?>" value="<?php echo get_term_meta($tag->term_id, 'ay_enddate', true); ?>" />
+          <?php self::display_field($input, $tag->term_id); ?>
           <p class="description"><?php echo $input->description; ?></p>
         </td>
       </tr>
     <?php endforeach; ?>
+    <?php
+  }
+
+  private static function display_field($input, $term_id = 0) {
+    if($input->type == 'checkbox'){
+      if( count(get_term_meta($term_id, $input->name)) > 0){
+        $default_value = get_term_meta($term_id, $input->name, true);
+      } else {
+        $default_value = array();
+      }
+    } else {
+      $default_value = get_term_meta($term_id, $input->name, true);
+    }
+    ?>
+    <?php if($input->type == 'input') : ?>
+
+      <input type="text" id="<?php echo $input->name; ?>" name="<?php echo $input->name; ?>" value="<?php echo  $default_value; ?>" />
+
+    <?php elseif($input->type == 'radio') : ?>
+
+      <?php foreach($input->options as $value => $label) : ?>
+      <input type="radio" name="<?php echo $input->name; ?>" value="<?php echo $value; ?>" <?php if($value == $default_value) : ?>checked<?php endif; ?>/> <?php echo $label; ?>&nbsp;&nbsp;&nbsp;
+      <?php endforeach; ?>
+
+    <?php elseif($input->type == 'select') : ?>
+
+      <select name="<?php echo $input->name; ?>" id="<?php echo $input->name; ?>">
+      <?php foreach($input->options as $value => $label) : ?>
+      <option value="<?php echo $value; ?>" <?php if($value == $default_value) : ?>selected<?php endif; ?>><?php echo $label; ?></option>
+      <?php endforeach; ?>
+      </select>
+
+    <?php elseif($input->type == 'checkbox') : ?>
+
+      <?php foreach($input->options as $value => $label) : ?>
+      <input type="checkbox" name="<?php echo $input->name; ?>[]" value="<?php echo $value; ?>" <?php if(in_array($value, $default_value)) : ?>checked<?php endif; ?>/> <?php echo $label; ?><br/>
+      <?php endforeach; ?>
+
+    <?php endif; ?>
     <?php
   }
  
@@ -105,14 +144,15 @@ class AyTermMeta {
     if(isset(self::$meta_fields[$taxonomy])) {
       foreach(self::$meta_fields[$taxonomy] as $input) {
         if(isset($_POST[$input->name])) {
-          update_term_meta($term_id, $input->name, esc_attr($_POST[$input->name]));
+          // @TODO ESC ATTR
+          update_term_meta($term_id, $input->name, $_POST[$input->name]);
         }
       }
     }
 
   }
 
-  public static function addMeta($term, $name, $label, $description = '') {
+  public static function addMeta($term, $name, $label, $type = 'input', $description = '', $options = array()) {
 
     if(!isset(self::$meta_fields[$term])) {
       self::$meta_fields[$term] = array();
@@ -121,7 +161,9 @@ class AyTermMeta {
     $meta = new StdClass();
     $meta->name = $name;
     $meta->label = $label;
+    $meta->type = $type;
     $meta->description = $description;
+    $meta->options = $options;
     self::$meta_fields[$term][] = $meta;
 
   }
