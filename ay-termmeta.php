@@ -1,5 +1,11 @@
 <?php
 /**
+ * @author Erwan Guillon <erwan@ayctor.com>
+ * @license https://www.gnu.org/licenses/gpl-2.0.html GPL2
+ * @link https://github.com/Ayctor/ay-termmeta Github repository
+ */
+
+/**
  * Plugin Name: Term meta
  * Plugin URI: http://ayctor.com/
  * Description: Add meta to terms
@@ -13,8 +19,19 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 class AyTermMeta {
 
-  public static $meta_fields = array();
+  /**
+   * Meta fields to manage.
+   * @var array
+   */
+  private static $meta_fields = array();
 
+  /**
+   * Init function.
+   *
+   * Register activation hook and term management actions.
+   * 
+   * @return void
+   */
   public static function init() {
     register_activation_hook( __FILE__, array('AyTermMeta', 'install') );
     add_action( 'admin_init', array('AyTermMeta', 'init_forms') );
@@ -25,6 +42,10 @@ class AyTermMeta {
     $wpdb->termmeta = $wpdb->prefix . "termmeta";
   }
 
+  /**
+   * Create the table if not exists.
+   * @return void
+   */
   public static function install() {
     global $wpdb;
 
@@ -53,6 +74,11 @@ class AyTermMeta {
 
   }
 
+  /**
+   * Init the custom fields.
+   * 
+   * @return void
+   */
   public static function init_forms() {
 
     foreach(self::$meta_fields as $term_name => $fields) {
@@ -62,9 +88,14 @@ class AyTermMeta {
 
   }
 
-  public static function term_input_add($tag) {
+  /**
+   * Display the field line in the add form.
+   * @param  String $term The taxonomy.
+   * @return void
+   */
+  public static function term_input_add($term) {
     ?>
-    <?php foreach(self::$meta_fields[$tag] as $input) : ?>
+    <?php foreach(self::$meta_fields[$term] as $input) : ?>
       <div class="form-field term-<?php echo $input->name; ?>-wrap">
         <label for="<?php echo $input->name; ?>"><?php echo $input->label; ?></label>
         <?php self::display_field($input); ?>
@@ -74,13 +105,18 @@ class AyTermMeta {
     <?php
   }
 
-  public static function term_input_edit($tag) {
+  /**
+   * Display the field line in the edit form.
+   * @param  Object $term Current term.
+   * @return void
+   */
+  public static function term_input_edit($term) {
     ?>
-    <?php foreach(self::$meta_fields[$tag->taxonomy] as $input) : ?>
+    <?php foreach(self::$meta_fields[$term->taxonomy] as $input) : ?>
       <tr class="form-field term-<?php echo $input->name; ?>-wrap">
         <th scope="row"><label for="<?php echo $input->name; ?>"><?php echo $input->label; ?></label></th>
         <td>
-          <?php self::display_field($input, $tag->term_id); ?>
+          <?php self::display_field($input, $term->term_id); ?>
           <p class="description"><?php echo $input->description; ?></p>
         </td>
       </tr>
@@ -88,6 +124,12 @@ class AyTermMeta {
     <?php
   }
 
+  /**
+   * Display input based on input type.
+   * @param  Object  $input   The input added.
+   * @param  integer $term_id Term ID.
+   * @return void
+   */
   private static function display_field($input, $term_id = 0) {
     $default_value = get_term_meta($term_id, $input->name, true);
 
@@ -123,19 +165,38 @@ class AyTermMeta {
     <?php endif; ?>
     <?php
   }
- 
+
+  /**
+   * Save term meta after add wrapper.
+   * @param  int $term_id     Term ID.
+   * @param  int $tt_id       Term ID.
+   * @param  String $taxonomy The taxonomy.
+   * @return void
+   */
   public static function term_input_add_save($term_id, $tt_id, $taxonomy) {
 
     self::term_save($term_id, $taxonomy);
 
   }
- 
+
+  /**
+   * Save term meta after edit wrapper.
+   * @param  int $term_id     Term ID.
+   * @param  String $taxonomy The taxonomy.
+   * @return void
+   */
   public static function term_input_edit_save($term_id, $taxonomy) {
 
     self::term_save($term_id, $taxonomy);
 
   }
 
+  /**
+   * The actual save function.
+   * @param  int $term_id     Term ID.
+   * @param  string $taxonomy The taxonomy.
+   * @return void
+   */
   private static function term_save($term_id, $taxonomy) {
     
     if(isset(self::$meta_fields[$taxonomy])) {
@@ -156,6 +217,15 @@ class AyTermMeta {
 
   }
 
+  /**
+   * User function to add meta to terms.
+   * @param string $term        Term name.
+   * @param string $name        Meta name.
+   * @param string $label       Form label.
+   * @param string $type        Type of input.
+   * @param string $description Description of the field.
+   * @param array  $options     Options for select/radio/checkbox.
+   */
   public static function addMeta($term, $name, $label, $type = 'input', $description = '', $options = array()) {
 
     if(!isset(self::$meta_fields[$term])) {
@@ -176,18 +246,61 @@ class AyTermMeta {
 
 AyTermMeta::init();
 
+/**
+ * Add meta data field to a term.
+ * @param int  $term_id       Term ID.
+ * @param string  $meta_key   Metadataname.
+ * @param mixed  $meta_value  Metadata value. Must be serializable if non-scalar.
+ * @param boolean $unique     Optional. Whether the same key should not be added.
+ *                            Default false.
+ *
+ * @return int|bool Meta ID on success, false on failure.
+ */
 function add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
   return add_metadata('term', $term_id, $meta_key, $meta_value, $unique);
 }
 
+/**
+ * Update term meta field based on term ID.
+ * @param int  $term_id       Term ID.
+ * @param string  $meta_key   Metadataname.
+ * @param mixed  $meta_value  Metadata value. Must be serializable if non-scalar.
+ * @param mixed  $prev_value  Optional. Previous value to check before removing.
+ *                            Default empty.
+ * @return int|bool Meta ID if the key didn't exist, true on successful update,
+ *                  false on failure.
+ */
 function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
   return update_metadata('term', $term_id, $meta_key, $meta_value, $prev_value);
 }
 
+/**
+* Retrieve term meta field for a term.
+*
+* @param int    $term_id Term ID.
+* @param string $key     Optional. The meta key to retrieve. By default, returns
+*                        data for all keys. Default empty.
+* @param bool   $single  Optional. Whether to return a single value. Default false.
+* @return mixed Will be an array if $single is false. Will be value of meta data
+*               field if $single is true.
+*/
 function get_term_meta( $term_id, $key = '', $single = false ) {
   return get_metadata('term', $term_id, $key, $single);
 }
 
+/**
+* Remove metadata matching criteria from a term.
+*
+* You can match based on the key, or key and value. Removing based on key and
+* value, will keep from removing duplicate metadata with the same key. It also
+* allows removing all metadata matching key, if needed.
+*
+* @param int    $term_id    Term ID.
+* @param string $meta_key   Metadata name.
+* @param mixed  $meta_value Optional. Metadata value. Must be serializable if
+*                           non-scalar. Default empty.
+* @return bool True on success, false on failure.
+*/
 function delete_term_meta( $term_id, $meta_key, $meta_value = '' ) {
   return delete_metadata('term', $term_id, $meta_key, $meta_value);
 }
