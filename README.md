@@ -1,1 +1,76 @@
-# ay-term-taxonomies
+# Term Meta
+
+## Description
+
+Add meta to terms in Wordpress
+
+## Usage
+
+Activate the plugin and add some code to your `functions.php`
+
+Use the function `AyTermMeta::addMeta` to add a meta to a term
+
+```php
+/**
+ * User function to add meta to terms.
+ * @param string $term        Term name.
+ * @param string $name        Meta name.
+ * @param string $label       Form label.
+ * @param string $type        Type of input.
+ * @param string $description Description of the field.
+ * @param array  $options     Options for select/radio/checkbox.
+ */
+  addMeta($term, $name, $label, $type = 'input', $description = '', $options = array()) {}
+```
+
+### Basic example
+
+#### Add an excerpt to a tag
+
+```php
+AyTermMeta::addMeta('post_tag', 'excerpt', 'Excerpt', 'input', 'Excerpts are optional hand-crafted summaries of your content that can be used in your theme.');
+```
+
+#### All term types
+
+This code
+
+```php
+AyTermMeta::addMeta('post_tag', 'tag_excerpt', 'Excerpt', 'input', 'Excerpt description');
+
+$radio_options = array(
+  'male' => 'Male',
+  'female' => 'Female',
+  'unknown' => 'Unknown'
+);
+AyTermMeta::addMeta('post_tag', 'gender', 'Gender', 'radio', 'Radio description', $radio_options);
+
+$select_options = array(
+  'africa' => 'Africa',
+  'america' => 'america',
+  'asia' => 'Asia',
+  'europe' => 'Europe',
+  'oceania' => 'Oceania'
+);
+AyTermMeta::addMeta('post_tag', 'continent', 'Continent', 'select', 'Select description', $select_options);
+
+$checkbox_options = array(
+  'patatoes' => 'patatoes',
+  'salad' => 'salad',
+  'tomatoes' => 'tomatoes'
+);
+AyTermMeta::addMeta('post_tag', 'food', 'Food', 'checkbox', 'Checkbox description', $checkbox_options);
+```
+
+will generate these views
+
+![add form](http://ayctor.github.io/ay-termmeta/add-form.png "add form")
+Add form
+
+![edit form](http://ayctor.github.io/ay-termmeta/edit-form.png "edit form")
+Edit form
+
+## TODO
+
+- Add textarea input type
+- Add image input type

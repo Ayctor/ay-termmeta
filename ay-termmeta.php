@@ -151,6 +151,7 @@ class AyTermMeta {
     <?php elseif($input->type == 'select') : ?>
 
       <select name="<?php echo $input->name; ?>" id="<?php echo $input->name; ?>">
+      <option value=""></option>
       <?php foreach($input->options as $value => $label) : ?>
       <option value="<?php echo $value; ?>" <?php if($value == $default_value) : ?>selected<?php endif; ?>><?php echo $label; ?></option>
       <?php endforeach; ?>
