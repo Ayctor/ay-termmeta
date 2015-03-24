@@ -89,15 +89,12 @@ class AyTermMeta {
   }
 
   private static function display_field($input, $term_id = 0) {
-    if($input->type == 'checkbox'){
-      if( count(get_term_meta($term_id, $input->name)) > 0){
-        $default_value = get_term_meta($term_id, $input->name, true);
-      } else {
-        $default_value = array();
-      }
-    } else {
-      $default_value = get_term_meta($term_id, $input->name, true);
+    $default_value = get_term_meta($term_id, $input->name, true);
+
+    if($input->type == 'checkbox' AND (!$default_value OR !count($default_value))){
+      $default_value = array();
     }
+
     ?>
     <?php if($input->type == 'input') : ?>
 
@@ -144,8 +141,15 @@ class AyTermMeta {
     if(isset(self::$meta_fields[$taxonomy])) {
       foreach(self::$meta_fields[$taxonomy] as $input) {
         if(isset($_POST[$input->name])) {
-          // @TODO ESC ATTR
-          update_term_meta($term_id, $input->name, $_POST[$input->name]);
+          $value = $_POST[$input->name];
+          if(is_array($value)) {
+            $value = array_map( 'esc_attr', $value );
+          } else {
+            $value = esc_attr($value);
+          }
+          update_term_meta($term_id, $input->name, $value);
+        } elseif($input->type == 'checkbox'){
+          delete_term_meta($term_id, $input->name);
         }
       }
     }
