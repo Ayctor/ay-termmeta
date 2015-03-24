@@ -93,6 +93,6 @@ The documentation is the same as `post_meta`. You can find it here :
 
 ## TODO
 
-- Add textarea input type
+- ~~Add textarea input type~~
 - Add image input type
 - Show the meta in the table listing

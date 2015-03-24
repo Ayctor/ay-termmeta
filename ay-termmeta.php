@@ -158,7 +158,11 @@ class AyTermMeta {
       <?php foreach($input->options as $value => $label) : ?>
       <input type="checkbox" name="<?php echo $input->name; ?>[]" value="<?php echo $value; ?>" <?php if(in_array($value, $default_value)) : ?>checked<?php endif; ?>/> <?php echo $label; ?><br/>
       <?php endforeach; ?>
-      
+
+    <?php elseif($input->type == 'textarea') : ?>
+
+      <textarea name="<?php echo $input->name; ?>" id="<?php echo $input->name; ?>" rows="5"><?php echo  $default_value; ?></textarea>
+
     <?php else : ?>
 
       <input type="text" id="<?php echo $input->name; ?>" name="<?php echo $input->name; ?>" value="<?php echo  $default_value; ?>" />
