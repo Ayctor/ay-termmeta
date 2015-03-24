@@ -70,7 +70,29 @@ Add form
 ![edit form](http://ayctor.github.io/ay-termmeta/edit-form.png "edit form")
 Edit form
 
+### Advanced usage
+
+You can use `term_meta` functions similar to `post_meta` function to add / update / get / delete metas
+
+```php
+function add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {}
+
+function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {}
+
+function get_term_meta( $term_id, $key = '', $single = false ) {}
+
+function delete_term_meta( $term_id, $meta_key, $meta_value = '' ) {}
+```
+
+The documentation is the same as `post_meta`. You can find it here :
+
+- [add_post_meta](https://codex.wordpress.org/Function_Reference/add_post_meta)
+- [update_post_meta](https://codex.wordpress.org/Function_Reference/update_post_meta)
+- [get_post_meta](https://codex.wordpress.org/Function_Reference/get_post_meta)
+- [delete_post_meta](https://codex.wordpress.org/Function_Reference/delete_post_meta)
+
 ## TODO
 
 - Add textarea input type
 - Add image input type
+- Show the meta in the table listing
