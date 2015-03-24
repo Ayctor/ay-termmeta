@@ -138,11 +138,7 @@ class AyTermMeta {
     }
 
     ?>
-    <?php if($input->type == 'input') : ?>
-
-      <input type="text" id="<?php echo $input->name; ?>" name="<?php echo $input->name; ?>" value="<?php echo  $default_value; ?>" />
-
-    <?php elseif($input->type == 'radio') : ?>
+    <?php if($input->type == 'radio') : ?>
 
       <?php foreach($input->options as $value => $label) : ?>
       <input type="radio" name="<?php echo $input->name; ?>" value="<?php echo $value; ?>" <?php if($value == $default_value) : ?>checked<?php endif; ?>/> <?php echo $label; ?>&nbsp;&nbsp;&nbsp;
@@ -162,6 +158,10 @@ class AyTermMeta {
       <?php foreach($input->options as $value => $label) : ?>
       <input type="checkbox" name="<?php echo $input->name; ?>[]" value="<?php echo $value; ?>" <?php if(in_array($value, $default_value)) : ?>checked<?php endif; ?>/> <?php echo $label; ?><br/>
       <?php endforeach; ?>
+      
+    <?php else : ?>
+
+      <input type="text" id="<?php echo $input->name; ?>" name="<?php echo $input->name; ?>" value="<?php echo  $default_value; ?>" />
 
     <?php endif; ?>
     <?php
