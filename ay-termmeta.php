@@ -6,7 +6,7 @@
  */
 
 /**
- * Plugin Name: Term meta
+ * Plugin Name: AY Term Meta
  * Plugin URI: http://ayctor.com/
  * Description: Add meta to terms
  * Version: 0.9

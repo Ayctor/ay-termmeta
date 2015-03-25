@@ -1,4 +1,4 @@
-=== Term Meta ===
+=== AY Term Meta ===
 Contributors: gastonpowered
 Tags: term, terms, category, categories, tag, tags, taxonomy, taxonomies, meta, metas, metadata
 Requires at least: 3.5
