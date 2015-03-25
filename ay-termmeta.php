@@ -34,14 +34,12 @@ class AyTermMeta {
    */
   public static function init() {
     register_activation_hook( __FILE__, array('AyTermMeta', 'install') );
-    add_action( 'admin_init', array('AyTermMeta', 'init_forms') );
+    add_action( 'admin_init', array('AyTermMeta', 'admin_init') );
     add_action( 'created_term',  array('AyTermMeta', 'term_input_add_save'), 10, 3 );
     add_action( 'edited_terms',  array('AyTermMeta', 'term_input_edit_save'), 10, 2 );
 
     global $wpdb;
     $wpdb->termmeta = $wpdb->prefix . "termmeta";
-
-    add_action('admin_enqueue_scripts',array('AyTermMeta', 'scripts'));
   }
 
   /**
@@ -77,15 +75,25 @@ class AyTermMeta {
   }
 
   /**
-   * Init the custom fields.
+   * Init the custom fields and JS enqueue process.
    * 
    * @return void
    */
-  public static function init_forms() {
+  public static function admin_init() {
 
     foreach(self::$meta_fields as $term_name => $fields) {
       add_action( $term_name . '_edit_form_fields',  array('AyTermMeta', 'term_input_edit') );
       add_action( $term_name . '_add_form_fields',  array('AyTermMeta', 'term_input_add') );
+    }
+
+    // Load JS only on term pages and when file input type is present
+    global $pagenow;
+    if($pagenow == 'edit-tags.php' AND isset($_GET['taxonomy']) AND isset(self::$meta_fields[$_GET['taxonomy']]) ) {
+      $file = false;
+      foreach(self::$meta_fields[$_GET['taxonomy']] as $input) {
+        if($input->type == 'file') $file = true;
+      }
+      if($file) add_action('admin_enqueue_scripts',array('AyTermMeta', 'scripts'));
     }
 
   }
