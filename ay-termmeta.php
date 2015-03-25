@@ -40,6 +40,8 @@ class AyTermMeta {
 
     global $wpdb;
     $wpdb->termmeta = $wpdb->prefix . "termmeta";
+
+    add_action('admin_enqueue_scripts',array('AyTermMeta', 'scripts'));
   }
 
   /**
@@ -159,6 +161,22 @@ class AyTermMeta {
       <input type="checkbox" name="<?php echo $input->name; ?>[]" value="<?php echo $value; ?>" <?php if(in_array($value, $default_value)) : ?>checked<?php endif; ?>/> <?php echo $label; ?><br/>
       <?php endforeach; ?>
 
+    <?php elseif($input->type == 'file') : ?>
+
+      <input type="hidden" id="<?php echo $input->name; ?>" name="<?php echo $input->name; ?>" value="<?php echo $default_value; ?>" />
+      <?php if($default_value != '') : ?>
+        <?php if(wp_attachment_is_image( $default_value )) : ?>
+          <?php $image = wp_get_attachment_image_src($default_value, 'thumbnail'); ?>
+          <img src="<?php if(isset($image[0])) echo $image[0]; ?>" alt="" class="file-rep">
+        <?php else : ?>
+          <?php $url = wp_get_attachment_url( $default_value ); ?>
+          <a href="<?php if($url) echo $url; ?>" title="" class="file-rep">Download file</a>
+        <?php endif; ?>
+      <br>
+      <button class="button del-file">Remove file</button>
+      <?php endif; ?>
+      <button class="button btn-file" data-name="<?php echo $input->label; ?>" data-target="<?php echo $input->name; ?>"><?php if($default_value != '') : ?>Change file<?php else : ?>Add file<?php endif; ?></button>
+
     <?php elseif($input->type == 'textarea') : ?>
 
       <textarea name="<?php echo $input->name; ?>" id="<?php echo $input->name; ?>" rows="5"><?php echo  $default_value; ?></textarea>
@@ -245,6 +263,15 @@ class AyTermMeta {
     $meta->options = $options;
     self::$meta_fields[$term][] = $meta;
 
+  }
+
+  /**
+   * Enqueue scripts for image upload
+   * @return void
+   */
+  public static function scripts() {
+    wp_enqueue_media();
+    wp_enqueue_script( 'aytermmeta', plugins_url( 'assets/script.js', __FILE__ ), array( 'jquery','media-upload','thickbox' ) );
   }
 
 }
