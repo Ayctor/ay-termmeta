@@ -9,7 +9,7 @@
  * Plugin Name: Term meta
  * Plugin URI: http://ayctor.com/
  * Description: Add meta to terms
- * Version: 0.0.1
+ * Version: 0.9
  * Author: Ayctor
  * Author URI: http://ayctor.com
  * License: GPL2

@@ -28,7 +28,7 @@ Use the function `AyTermMeta::addMeta` to add a meta to a term
 #### Add an excerpt to a tag
 
 ```php
-AyTermMeta::addMeta('post_tag', 'excerpt', 'Excerpt', 'input', 'Excerpts are optional hand-crafted summaries of your content that can be used in your theme.');
+AyTermMeta::addMeta('category', 'excerpt', 'Excerpt', 'input', 'Excerpts are optional hand-crafted summaries of your content that can be used in your theme.');
 ```
 
 #### All term types
@@ -36,14 +36,14 @@ AyTermMeta::addMeta('post_tag', 'excerpt', 'Excerpt', 'input', 'Excerpts are opt
 This code
 
 ```php
-AyTermMeta::addMeta('post_tag', 'tag_excerpt', 'Excerpt', 'input', 'Excerpt description');
+AyTermMeta::addMeta('category', 'tag_excerpt', 'Excerpt', 'input', 'Excerpt description');
 
 $radio_options = array(
   'male' => 'Male',
   'female' => 'Female',
   'unknown' => 'Unknown'
 );
-AyTermMeta::addMeta('post_tag', 'gender', 'Gender', 'radio', 'Radio description', $radio_options);
+AyTermMeta::addMeta('category', 'gender', 'Gender', 'radio', 'Radio description', $radio_options);
 
 $select_options = array(
   'africa' => 'Africa',
@@ -52,14 +52,14 @@ $select_options = array(
   'europe' => 'Europe',
   'oceania' => 'Oceania'
 );
-AyTermMeta::addMeta('post_tag', 'continent', 'Continent', 'select', 'Select description', $select_options);
+AyTermMeta::addMeta('category', 'continent', 'Continent', 'select', 'Select description', $select_options);
 
 $checkbox_options = array(
   'patatoes' => 'patatoes',
   'salad' => 'salad',
   'tomatoes' => 'tomatoes'
 );
-AyTermMeta::addMeta('post_tag', 'food', 'Food', 'checkbox', 'Checkbox description', $checkbox_options);
+AyTermMeta::addMeta('category', 'food', 'Food', 'checkbox', 'Checkbox description', $checkbox_options);
 ```
 
 will generate these views
