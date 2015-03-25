@@ -1,33 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Term Meta by Ayctor</title>
+    <meta name="description" content="Term Meta : Add metas to terms in Wordpress">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Term Meta</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Term Meta</h1>
-        <p>Ass metas to terms in Wordpress</p>
 
-        <p class="view"><a href="https://github.com/Ayctor/ay-termmeta">View the Project on GitHub <small>Ayctor/ay-termmeta</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Ayctor/ay-termmeta">View on GitHub</a>
 
+          <h1 id="project_title">Term Meta</h1>
+          <h2 id="project_tagline">Add metas to terms in Wordpress</h2>
 
-        <ul>
-          <li><a href="https://github.com/Ayctor/ay-termmeta/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Ayctor/ay-termmeta/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Ayctor/ay-termmeta">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Ayctor/ay-termmeta/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Ayctor/ay-termmeta/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a id="term-meta" class="anchor" href="#term-meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>Term Meta</h1>
 
@@ -60,19 +63,21 @@
 <h4>
 <a id="add-an-excerpt-to-a-tag" class="anchor" href="#add-an-excerpt-to-a-tag" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add an excerpt to a tag</h4>
 
-<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>post_tag<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>input<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpts are optional hand-crafted summaries of your content that can be used in your theme.<span class="pl-pds">'</span></span>);</span></pre></div>
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>input<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpts are optional hand-crafted summaries of your content that can be used in your theme.<span class="pl-pds">'</span></span>);</span></pre></div>
 
 <h4>
 <a id="all-term-types" class="anchor" href="#all-term-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>All term types</h4>
 
-<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>post_tag<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>tag_excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>input<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpt description<span class="pl-pds">'</span></span>);</span>
+<p>This code</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>tag_excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>input<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Excerpt description<span class="pl-pds">'</span></span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$radio_options</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>male<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Male<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>female<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Female<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>unknown<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Unknown<span class="pl-pds">'</span></span></span>
 <span class="pl-s1">);</span>
-<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>post_tag<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>gender<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Gender<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>radio<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Radio description<span class="pl-pds">'</span></span>, <span class="pl-smi">$radio_options</span>);</span>
+<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>gender<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Gender<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>radio<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Radio description<span class="pl-pds">'</span></span>, <span class="pl-smi">$radio_options</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$select_options</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>africa<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Africa<span class="pl-pds">'</span></span>,</span>
@@ -81,24 +86,70 @@
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>europe<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Europe<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>oceania<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Oceania<span class="pl-pds">'</span></span></span>
 <span class="pl-s1">);</span>
-<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>post_tag<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>continent<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Continent<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>select<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Select description<span class="pl-pds">'</span></span>, <span class="pl-smi">$select_options</span>);</span>
+<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>continent<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Continent<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>select<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Select description<span class="pl-pds">'</span></span>, <span class="pl-smi">$select_options</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$checkbox_options</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>patatoes<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>patatoes<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>salad<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>salad<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>tomatoes<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>tomatoes<span class="pl-pds">'</span></span></span>
 <span class="pl-s1">);</span>
-<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>post_tag<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>food<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Food<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>checkbox<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Checkbox description<span class="pl-pds">'</span></span>, <span class="pl-smi">$checkbox_options</span>);</span></pre></div>
+<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>food<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Food<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>checkbox<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Checkbox description<span class="pl-pds">'</span></span>, <span class="pl-smi">$checkbox_options</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bio<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Bio<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>textarea<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Textarea description<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">AyTermMeta</span><span class="pl-k">::</span>addMeta(<span class="pl-s"><span class="pl-pds">'</span>category<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>myimage<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>My Image<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>file<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Image description<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<p>will generate these views</p>
+
+<p><img src="http://ayctor.github.io/ay-termmeta/screenshot-1.png" alt="add form" title="add form">
+Add form</p>
+
+<p><img src="http://ayctor.github.io/ay-termmeta/screenshot-2.png" alt="edit form" title="edit form">
+Edit form</p>
+
+<h3>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced usage</h3>
+
+<p>You can use <code>term_meta</code> functions similar to <code>post_meta</code> function to add / update / get / delete metas</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">add_term_meta</span>( <span class="pl-smi">$term_id</span>, <span class="pl-smi">$meta_key</span>, <span class="pl-smi">$meta_value</span>, <span class="pl-smi">$unique</span> <span class="pl-k">=</span> <span class="pl-c1">false</span> ) {}</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">update_term_meta</span>( <span class="pl-smi">$term_id</span>, <span class="pl-smi">$meta_key</span>, <span class="pl-smi">$meta_value</span>, <span class="pl-smi">$prev_value</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span> ) {}</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">get_term_meta</span>( <span class="pl-smi">$term_id</span>, <span class="pl-smi">$key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-smi">$single</span> <span class="pl-k">=</span> <span class="pl-c1">false</span> ) {}</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">delete_term_meta</span>( <span class="pl-smi">$term_id</span>, <span class="pl-smi">$meta_key</span>, <span class="pl-smi">$meta_value</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span> ) {}</span></pre></div>
+
+<p>The documentation is the same as <code>post_meta</code>. You can find it here :</p>
+
+<ul>
+<li><a href="https://codex.wordpress.org/Function_Reference/add_post_meta">add_post_meta</a></li>
+<li><a href="https://codex.wordpress.org/Function_Reference/update_post_meta">update_post_meta</a></li>
+<li><a href="https://codex.wordpress.org/Function_Reference/get_post_meta">get_post_meta</a></li>
+<li><a href="https://codex.wordpress.org/Function_Reference/delete_post_meta">delete_post_meta</a></li>
+</ul>
 
 <h2>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li><del>Add textarea input type</del></li>
+<li><del>Add image input type</del></li>
+<li>Show the meta in the table listing</li>
+<li>Add term thumbnail</li>
+</ul>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/Ayctor">Ayctor</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Term Meta maintained by <a href="https://github.com/Ayctor">Ayctor</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
