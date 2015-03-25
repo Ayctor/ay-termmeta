@@ -7,11 +7,11 @@
 
 /**
  * Plugin Name: AY Term Meta
- * Plugin URI: http://ayctor.com/
+ * Plugin URI: http://ayctor.github.io/ay-termmeta/
  * Description: Add meta to terms
  * Version: 0.9
  * Author: Ayctor
- * Author URI: http://ayctor.com
+ * Author URI: http://ayctor.com/
  * License: GPL2
  */
 

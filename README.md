@@ -60,14 +60,18 @@ $checkbox_options = array(
   'tomatoes' => 'tomatoes'
 );
 AyTermMeta::addMeta('category', 'food', 'Food', 'checkbox', 'Checkbox description', $checkbox_options);
+
+AyTermMeta::addMeta('category', 'bio', 'Bio', 'textarea', 'Textarea description');
+
+AyTermMeta::addMeta('category', 'myimage', 'My Image', 'file', 'Image description');
 ```
 
 will generate these views
 
-![add form](http://ayctor.github.io/ay-termmeta/add-form.png "add form")
+![add form](http://ayctor.github.io/ay-termmeta/screenshot-1.png "add form")
 Add form
 
-![edit form](http://ayctor.github.io/ay-termmeta/edit-form.png "edit form")
+![edit form](http://ayctor.github.io/ay-termmeta/screenshot-2.png "edit form")
 Edit form
 
 ### Advanced usage
