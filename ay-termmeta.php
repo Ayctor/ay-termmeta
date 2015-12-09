@@ -296,8 +296,12 @@ AyTermMeta::init();
  *
  * @return int|bool Meta ID on success, false on failure.
  */
-function add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
-  return add_metadata('term', $term_id, $meta_key, $meta_value, $unique);
+if(!function_exists('add_term_meta')){
+
+  function add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
+    return add_metadata('term', $term_id, $meta_key, $meta_value, $unique);
+  }
+
 }
 
 /**
@@ -310,8 +314,12 @@ function add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
  * @return int|bool Meta ID if the key didn't exist, true on successful update,
  *                  false on failure.
  */
-function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
-  return update_metadata('term', $term_id, $meta_key, $meta_value, $prev_value);
+if(!function_exists('update_term_meta')){
+
+  function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
+    return update_metadata('term', $term_id, $meta_key, $meta_value, $prev_value);
+  }
+
 }
 
 /**
@@ -324,8 +332,12 @@ function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) 
 * @return mixed Will be an array if $single is false. Will be value of meta data
 *               field if $single is true.
 */
-function get_term_meta( $term_id, $key = '', $single = false ) {
-  return get_metadata('term', $term_id, $key, $single);
+if(!function_exists('get_term_meta')){
+
+  function get_term_meta( $term_id, $key = '', $single = false ) {
+    return get_metadata('term', $term_id, $key, $single);
+  }
+
 }
 
 /**
@@ -341,6 +353,10 @@ function get_term_meta( $term_id, $key = '', $single = false ) {
 *                           non-scalar. Default empty.
 * @return bool True on success, false on failure.
 */
-function delete_term_meta( $term_id, $meta_key, $meta_value = '' ) {
-  return delete_metadata('term', $term_id, $meta_key, $meta_value);
+if(!function_exists('delete_term_meta')){
+
+  function delete_term_meta( $term_id, $meta_key, $meta_value = '' ) {
+    return delete_metadata('term', $term_id, $meta_key, $meta_value);
+  }
+  
 }
